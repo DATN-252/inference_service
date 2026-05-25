@@ -23,6 +23,10 @@ models/
 *.json
 !request.json
 
+# Documentation
+*.md
+!README.md
+
 # IDEs
 .vscode/
 .idea/
