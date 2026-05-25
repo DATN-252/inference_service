@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic>=2.0.0
+pydantic-settings
+onnxruntime
+redis
+celery
+requests
+llama-cpp-python

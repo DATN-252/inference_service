@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Models (Sensitive & Heavy)
+models/
+*.onnx
+*.pt
+*.gguf
+
+# Environment variables
+.env
+
+# Large data files
+*.csv
+*.json
+!request.json
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
