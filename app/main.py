@@ -72,7 +72,7 @@ async def predict_fraud(request: TransactionRequest):
     explanation_id = None
     app_status = "completed"
     
-    if score >= settings.RISK_THRESHOLD:
+    if prediction == "Fraud":
         explanation_id = str(uuid.uuid4())
         app_status = "explaining"
         

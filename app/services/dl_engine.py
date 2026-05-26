@@ -54,6 +54,7 @@ class DLEngine:
             raw_val = float(result_array[-1]) 
             
             # 3. Apply Sigmoid Activation (Logit processing)
+            # Mandatory transformation as per user requirement.
             score = 1 / (1 + np.exp(-raw_val))
             
             logger.info(f"Inference result - Raw: {raw_val:.4f}, Probability: {score:.4f}, Shape: {result_array.shape}")
@@ -62,7 +63,7 @@ class DLEngine:
             logger.error(f"CRITICAL: Failed to extract score. Content: {outputs}. Error: {e}")
             score = 0.5 
             
-        prediction = "Fraud" if score > 0.5 else "Legit"
+        prediction = "Fraud" if score >= settings.RISK_THRESHOLD else "Legit"
         return float(score), prediction
 
 dl_engine = DLEngine()
