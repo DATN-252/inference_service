@@ -6,4 +6,3 @@ onnxruntime
 redis
 celery
 requests
-llama-cpp-python
