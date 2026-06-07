@@ -1,0 +1,38 @@
+{
+  "city_pop": {
+    "mean": 88824.44,
+    "std": 301956.36
+  },
+  "hour": {
+    "mean": 12.80,
+    "std": 6.81
+  },
+  "age": {
+    "mean": 52.74,
+    "std": 17.38
+  },
+  "unix_time": {
+    "mean": 1349243636.72,
+    "std": 12841278.42
+  },
+  "amt_diff_avg_30d": {
+    "mean": 0.13,
+    "std": 157.82
+  },
+  "trans_count_24h": {
+    "mean": 4.88,
+    "std": 3.08
+  },
+  "distance_velocity": {
+    "mean": 188.87,
+    "std": 3796.50
+  },
+  "merchant_risk_score": {
+    "mean": 0.02,
+    "std": 0.1
+  },
+  "merchant_freq_30d": {
+    "mean": 1.0,
+    "std": 1.0
+  }
+}

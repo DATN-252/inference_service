@@ -11,6 +11,7 @@ class DLEngine:
     def __init__(self):
         self.session = None
         self.input_name = None
+        self.feature_stats = None
 
     def load_model(self):
         """Load the ONNX model into memory."""
@@ -22,6 +23,14 @@ class DLEngine:
             self.session = ort.InferenceSession(settings.MODEL_PATH)
             self.input_name = self.session.get_inputs()[0].name
             logger.info("ONNX Model Loaded Successfully")
+            
+            # Load feature stats for standardization
+            stats_path = os.path.join(os.path.dirname(settings.MODEL_PATH), "feature_stats.json")
+            if os.path.exists(stats_path):
+                import json
+                with open(stats_path, "r", encoding="utf-8") as f:
+                    self.feature_stats = json.load(f)
+                logger.info("Feature Statistics Loaded Successfully for Standardization")
         except Exception as e:
             logger.error(f"Failed to load ONNX model: {e}")
 
@@ -40,6 +49,19 @@ class DLEngine:
         # Get raw input and ensure it is float32 for ONNX
         input_data = features.to_numpy_array().astype(np.float32)
         
+        # Standardize 9 numeric features to prevent magnitude bias (z-score scaling)
+        if self.feature_stats:
+            numeric_features = [
+                "city_pop", "hour", "age", "unix_time", 
+                "amt_diff_avg_30d", "trans_count_24h", "distance_velocity",
+                "merchant_risk_score", "merchant_freq_30d"
+            ]
+            for i, feat in enumerate(numeric_features):
+                if feat in self.feature_stats:
+                    mean = self.feature_stats[feat]["mean"]
+                    std = self.feature_stats[feat]["std"]
+                    input_data[0, i] = (input_data[0, i] - mean) / std
+
         # Diagnostic Log: See exactly what is being sent to the model
         logger.info(f"DIAGNOSTIC - Input Vector: {input_data.tolist()}")
         

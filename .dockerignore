@@ -1,0 +1,16 @@
+.git/
+.venv/
+venv/
+env/
+*.pt
+models/*.gguf
+models/qwen2.5-1.5b-instruct-q4_k_m-00001-of-00001.gguf
+*.gguf
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.idea/
+*.db
+*.log

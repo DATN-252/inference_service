@@ -10,7 +10,7 @@ venv/
 ENV/
 
 # Models (Sensitive & Heavy)
-models/
+models/*
 *.onnx
 *.pt
 *.gguf
@@ -34,3 +34,14 @@ models/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Graphify
+graphify-out/
+
+# Temp test files
+scratch_*.py
+
+# Track small ML models & features in Git (needed for Railway Git builds)
+!models/packaged_model_round_100.onnx
+!models/feature_stats.json
+

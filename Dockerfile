@@ -15,6 +15,9 @@ COPY . .
 # Create models directory if it doesn't exist
 RUN mkdir -p models
 
+# Make start.sh executable
+RUN chmod +x start.sh
+
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["./start.sh"]
