@@ -24,7 +24,7 @@ api:
 
 worker:
 	@echo "Starting Celery Worker..."
-	$(VENV)/bin/celery -A app.celery_app worker --loglevel=info -Q xai-queue
+	$(VENV)/bin/celery -A app.celery_app worker --loglevel=info -Q xai-queue --concurrency=2
 
 clean:
 	@echo "Cleaning up cache files..."
